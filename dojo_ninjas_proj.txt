@@ -1,0 +1,277 @@
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> python manage.py shell
+Python 3.8.5 (tags/v3.8.5:580fbb0, Jul 20 2020, 15:43:08) [MSC v.1926 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_ninjas_app.models import *
+>>> dojo.objects.create(name=
+... dojo.objects.create(name="Gold", city="Los Angeles", state="CA")
+... dojo.objects.all()
+  File "<console>", line 3
+    dojo.objects.all()
+    ^
+SyntaxError: invalid syntax
+>>> dojo.objects.create(name="Gold", city="Los Angeles", state="CA")
+<dojo object: Gold (1)>
+>>> dojo.objects.create(name="Silver", city="San Francisco", state="CA")
+<dojo object: Silver (2)>
+>>> dojo.objects.create(name="Bronze", city="Seattle", state="WA")
+<dojo object: Bronze (3)>
+>>> c = dojo.objects.get(id=1)
+>>> c.delete()
+(1, {'dojo_ninjas_app.ninja': 0, 'dojo_ninjas_app.dojo': 1})
+>>> c = dojo.objects.get(id=2)
+>>> c.delete()
+(1, {'dojo_ninjas_app.ninja': 0, 'dojo_ninjas_app.dojo': 1})
+>>> c = dojo.objects.get(id=3)
+>>> c.delete()
+(1, {'dojo_ninjas_app.ninja': 0, 'dojo_ninjas_app.dojo': 1})
+>>> dojo.objects.create(name="Red", city="Los Angeles", state="CA")
+<dojo object: Red (4)>
+>>> dojo.objects.create(name="Blue", city="Seattle", state="WA")
+<dojo object: Blue (5)>
+>>> dojo.objects.create(name="Green", city="Austin", state="TX")
+<dojo object: Green (6)>
+>>> nohemy = ninja.objects.create(first_name="Nohemy", last_name="Martinez", dojo=dojo.objects.get(id=4))
+>>> julie = ninja.objects.create(first_name="Julie", last_name="Macias", dojo=dojo.objects.get(id=4))
+>>> beryl = ninja.objects.create(first_name="Beryl", last_name="Clark", dojo=dojo.objects.get(id=4))
+>>> efrain = ninja.objects.create(first_name="Efrain", last_name="Gonzales", dojo=dojo.objects.get(id=5))
+>>> gil = ninja.objects.create(first_name="Gilbert", last_name="Apodaca", dojo=dojo.objects.get(id=5))
+>>> george = ninja.objects.create(first_name="George", last_name="Salcedo", dojo=dojo.objects.get(id=5))
+>>> lulu = ninja.objects.create(first_name="Lucia", last_name="Gonzales", dojo=dojo.objects.get(id=6))
+>>> eve = ninja.objects.create(first_name="Evalyn", last_name="Rojas", dojo=dojo.objects.get(id=6))
+>>> daisy = ninja.objects.create(first_name="Daisy", last_name="Salcedo", dojo=dojo.objects.get(id=6))
+>>> dojos = ninja.objectives.filter(dojo=dojo.objects.get(id=4))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'ninja' has no attribute 'objectives'
+>>> dojos = ninjas.objectives.filter(dojo=dojo.objects.get(id=4))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'ninjas' is not defined
+>>> dojos = ninja.objectives.filter(dojo=dojo.objects.get(id=4))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'ninja' has no attribute 'objectives'
+>>> dojos = ninja.objects.filter(dojo=dojo.objects.get(id=4))
+>>> dojos.objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'objects'
+>>> dojos = ninja.objects.filter(dojo=dojo.objects.get(id=4))
+>>> dojos.dojos.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'dojos'
+>>> red_dojo = dojo.objects.get(id=4))
+  File "<console>", line 1
+    red_dojo = dojo.objects.get(id=4))
+                                     ^
+SyntaxError: unmatched ')'
+>>> red_dojo = dojo.objects.get(id=4)
+>>> dojos = ninja.objects.filter(dojo=red_dojo)
+>>> red_dojo.ninja
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'ninja'
+>>> dojos.ninja
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'ninja'
+>>> red_dojo.ninja.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'ninja'
+>>> from dojo_ninjas_app.models import dojo, ninja
+>>> dojo.objects.all()
+<QuerySet [<dojo object: Red (4)>, <dojo object: Blue (5)>, <dojo object: Green (6)>]>
+>>> nohemy.name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ninja' object has no attribute 'name'
+>>> nohemy.first_name
+'Nohemy'
+>>> red_dojo.ninja.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'ninja'
+>>> red_dojo.ninja.name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'ninja'
+>>> red_dojo.ninja.first_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'ninja'
+>>> red_dojo.first_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'first_name'
+>>> red_dojo.dojo.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'dojo'
+>>> red_dojo.dojo.first_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'dojo'
+>>> red_dojo.dojos
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x03BCBCA0>
+>>> red_dojo.dojos.all()
+<QuerySet [<ninja object: Nohemy (1)>, <ninja object: Julie (2)>, <ninja object: Beryl (3)>]>
+>>> for ninja in red_dojo.dojos.all()
+  File "<console>", line 1
+    for ninja in red_dojo.dojos.all()
+                                    ^
+SyntaxError: invalid syntax
+>>> for ninja in red_dojo.dojos.all():
+... print(book.first_name, last_name)
+  File "<console>", line 2
+    print(book.first_name, last_name)
+    ^
+IndentationError: expected an indented block
+>>> print(book.first_name, book.last_name)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'book' is not defined
+>>> print(ninja.first_name, ninja.last_name)
+<django.db.models.query_utils.DeferredAttribute object at 0x03B34178> <django.db.models.query_utils.DeferredAttribute object at 0x03B34190>
+>>> print(ninja.first_name)
+<django.db.models.query_utils.DeferredAttribute object at 0x03B34178>
+>>> for ninja in red_dojo.dojos.all():
+... print(ninja.objects.first_name)
+  File "<console>", line 2
+    print(ninja.objects.first_name)
+    ^
+IndentationError: expected an indented block
+>>> for ninja in red_dojo.dojos.all():
+...     print(ninja.first_name)
+...     print(ninja.objects.first_name)
+...     print(ninja objects.first_name)
+  File "<console>", line 4
+    print(ninja objects.first_name)
+                ^
+SyntaxError: invalid syntax
+>>>     print(ninja object.first_name)
+  File "<console>", line 1
+    print(ninja object.first_name)
+    ^
+IndentationError: unexpected indent
+>>>     print(red_dojo)
+  File "<console>", line 1
+    print(red_dojo)
+    ^
+IndentationError: unexpected indent
+>>> for ninja in red_dojo.dojos.all():
+...     print(red_dojo.dojos.all())
+... red_dojo.dojos.all()
+  File "<console>", line 3
+    red_dojo.dojos.all()
+    ^
+SyntaxError: invalid syntax
+>>> red_dojo.dojos.all()
+<QuerySet [<ninja object: Nohemy (1)>, <ninja object: Julie (2)>, <ninja object: Beryl (3)>]>
+>>> ninja.dojo.first()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ForwardManyToOneDescriptor' object has no attribute 'first'
+>>> ninja.dojos.first()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'ninja' has no attribute 'dojos'
+>>> ninja.dojos.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'ninja' has no attribute 'dojos'
+>>> red_dojo.dojos.all()
+<QuerySet [<ninja object: Nohemy (1)>, <ninja object: Julie (2)>, <ninja object: Beryl (3)>]>
+>>> green_dojo = dojo.objects.get(id=5)
+>>> green_dojos.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'green_dojos' is not defined
+>>> green_dojo.dojos.all()
+<QuerySet [<ninja object: Efrain (4)>, <ninja object: Gilbert (5)>, <ninja object: George (6)>]>
+>>> efrain.dojos.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ninja' object has no attribute 'dojos'
+>>> efrain.dojo.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dojo' object has no attribute 'all'
+>>> daisy.name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ninja' object has no attribute 'name'
+>>> daisy.dojo
+<dojo object: Green (6)>
+>>> python manage.py makemigrations
+  File "<console>", line 1
+    python manage.py makemigrations
+           ^
+SyntaxError: invalid syntax
+>>> exit()
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "old dojo"
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app\migrations\0002_dojo_desc.py
+    - Add field desc to dojo
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> python manage.py makemigrations
+No changes detected
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0002_dojo_desc... OK
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> python manage.py shell
+Python 3.8.5 (tags/v3.8.5:580fbb0, Jul 20 2020, 15:43:08) [MSC v.1926 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Create a new dojo
+  File "<console>", line 1
+    Create a new dojo
+           ^
+SyntaxError: invalid syntax
+>>> exit
+Use exit() or Ctrl-Z plus Return to exit
+>>> exit()
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> Create a new dojo
+Create : The term 'Create' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ Create a new dojo
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Create:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+(djangoPy3env) PS C:\Users\Nohmi\Desktop\documents\codingdojo\python_stack\django\django_intro\dojo_ninjas_proj> python manage.py shell
+Python 3.8.5 (tags/v3.8.5:580fbb0, Jul 20 2020, 15:43:08) [MSC v.1926 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> for dojo_ninjas_app.models import *
+  File "<console>", line 1
+    for dojo_ninjas_app.models import *
+                               ^
+SyntaxError: invalid syntax
+>>> for dojo_ninjas_app.models import *
+  File "<console>", line 1
+    for dojo_ninjas_app.models import *
+                               ^
+SyntaxError: invalid syntax
+>>> from dojo_ninjas_app.models import *
+>>> Create a new dojo
+  File "<console>", line 1
+    Create a new dojo
+           ^
+SyntaxError: invalid syntax
+>>> dojo.objects.create(name = "Purple", city="Manchester", state="NH", desc="Up to 100 member capacity")
+<dojo object: Purple (7)>
+>>>
